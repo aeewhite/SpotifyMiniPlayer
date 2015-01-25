@@ -1,9 +1,30 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title></title>
-</head>
-<body>
-
-</body>
+	<head>
+		<link rel="stylesheet" type="text/css" href="styles.css">
+		<meta charset="UTF-8">
+	</head>
+	<body>
+		<div class="notRunningMessage">
+			You are not even running Spotify, ya dingus
+		</div>
+		<div class="infoBox overlay">
+			<!-- Bit at the top of the window, shows track info -->
+			<span class="songTitle">Title</span><br>
+			<span class="songArtist">Artist</span> &mdash; <span class="songAlbum">Album</span>
+		</div>
+		<div class="controlBox overlay">
+			<!-- Bit at the bottom of the window, previous,  pause/play, next buttons -->
+			<div class="playControls">
+				<img src="rewind.png" class="prev" width="20px">
+				<img src="play.png" class="playpause" width="35px">
+				<img src="next.png" class="next" width="20px">
+			</div>
+		</div>
+		<div class="exit">
+			<img src="exit.png" id="closeButton">
+		</div>
+		<script type="text/javascript" src="jquery.js"></script>
+		<script src="scripts.js"></script>
+	</body>
 </html>
