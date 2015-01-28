@@ -16,9 +16,9 @@
     "spotify-node-applescript": "^0.2.1"
   },
   "window": {
-    "title":"Spotify Mini Player",
-    "width":335,
-    "height":335,
-    "frame":false
+    "title": "Spotify Mini Player",
+    "width": 335,
+    "height": 335,
+    "frame": false
   }
 }

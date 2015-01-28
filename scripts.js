@@ -9,12 +9,12 @@ function isSongEquivalent(a, b) {
 	if(a === undefined || b ===undefined){
 		return false;
 	}
-    if(a.id != b.id){
-    	return false
-    }
-    // If we made it this far, objects
-    // are considered equivalent
-    return true;
+	if(a.id != b.id){
+		return false;
+	}
+	// If we made it this far, objects
+	// are considered equivalent
+	return true;
 }
 
 function CheckifRunning(){
@@ -30,11 +30,20 @@ function spamCheckStatus(){
 	setInterval(function(){
 		spotify.getState(function(err, state){
 			if(err){
-				console.log(err);
+				// console.log(err);
 			}
-			console.log(state);
+			if(state){
+				console.log(state);
+				if(state.state == "paused" && $('.playpause').attr('src') == "pause.png"){
+					$('.playpause').attr('src','play.png');
+				}
+				else if(state.state == "playing" && $('.playpause').attr('src') == "play.png"){
+					$('.playpause').attr('src','pause.png');	
+				}	
+			}
+			
 		});
-	}, 1000);	
+	}, 200);	
 }
 
 var currentBackground = "Whatever";
@@ -73,7 +82,7 @@ var currentSong;
 function getTrackInformation(){
 	spotify.getTrack(function(err, track){
 		if(err){
-			// console.error("Song Check Failed");
+			// console.error("Song Check Failed",err);
 		}
 		else{
 			console.log("Song Check Success");
@@ -100,6 +109,7 @@ function displaySong(songObject){
 
 function songChangeLoop(){
 	setInterval(getTrackInformation, 500);
+	console.log("Started Check Loop");
 }
 
 $('.playpause').click(function(){
@@ -124,7 +134,7 @@ $(document).on("mouseleave",function(){
 $(document).on("mouseenter",function(){
 	$('.infoBox').show();
 	$('.controlBox').show();
-	$('.exit').show()
+	$('.exit').show();
 });
 
 // $(document).click(win.focus);
@@ -137,4 +147,5 @@ $('body').on('songChange', function(){
 	displaySong(currentSong);
 });
 
+spamCheckStatus();
 songChangeLoop();
