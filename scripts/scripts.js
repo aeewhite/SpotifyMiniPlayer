@@ -51,7 +51,7 @@ function setBackground(path){
 	if(path !== undefined && path != currentBackground){
 		$('html').css('background-image', 'url(' + path + ')');
 		currentBackground = path;
-		console.log("set background");
+		console.log("set background to " + path);
 	}
 	else{
 		console.log("Tried to change background");
