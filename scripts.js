@@ -33,7 +33,6 @@ function spamCheckStatus(){
 				// console.log(err);
 			}
 			if(state){
-				console.log(state);
 				if(state.state == "paused" && $('.playpause').attr('src') == "pause.png"){
 					$('.playpause').attr('src','play.png');
 				}
@@ -43,7 +42,7 @@ function spamCheckStatus(){
 			}
 			
 		});
-	}, 200);	
+	}, 500);	
 }
 
 var currentBackground = "Whatever";
@@ -82,7 +81,7 @@ var currentSong;
 function getTrackInformation(){
 	spotify.getTrack(function(err, track){
 		if(err){
-			// console.error("Song Check Failed",err);
+			console.error("Song Check Failed");
 		}
 		else{
 			console.log("Song Check Success");
@@ -108,7 +107,7 @@ function displaySong(songObject){
 }
 
 function songChangeLoop(){
-	setInterval(getTrackInformation, 500);
+	setInterval(getTrackInformation, 1000);
 	console.log("Started Check Loop");
 }
 
