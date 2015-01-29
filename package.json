@@ -11,6 +11,10 @@
     "mini-player",
     "controller"
   ],
+  "repository":{
+    "type":"git",
+    "url":"https://github.com/aeewhite/SpotifyMiniPlayer.git"
+  },
   "author": "Andrew White",
   "dependencies": {
     "spotify-node-applescript": "andrehaveman/spotify-node-applescript"
