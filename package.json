@@ -13,7 +13,7 @@
   ],
   "author": "Andrew White",
   "dependencies": {
-    "spotify-node-applescript": "^0.2.1"
+    "spotify-node-applescript": "andrehaveman/spotify-node-applescript"
   },
   "window": {
     "title": "Spotify Mini Player",

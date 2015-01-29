@@ -9,6 +9,11 @@ Gets information from Spotify using applescript and displays it in a visually ap
 
 The app uses [node-webkit](https://github.com/nwjs/nw.js) to make a desktop app using node.js and javascript. The [spotify-node-applescript](https://github.com/andrehaveman/spotify-node-applescript) node package is then used to get information out of Spotify using applescript. It fetches album artwork from the local cache that Spotify creates, so it doesn't have to download it again.
 
+##Installation
+1. Clone the repository
+2. In the directory run `npm install`
+3. Run the app using node-webkit `nw .` 
+
 ##Todo
 
  - Handle whenever an ad plays
