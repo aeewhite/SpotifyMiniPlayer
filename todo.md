@@ -2,7 +2,5 @@
 	 - It doesn't use the right art, so just use a generic image
 	 - Have to catch whenever there is an ad
 		 - Probably check the album for "http..."
- - Play doesn't change to pause when music is playing
-	 - Need to determine a way to know if the music is currently playing or not
  - Clean up the exit button
  - Volume Controls
