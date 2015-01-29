@@ -1,6 +1,0 @@
- - Handle whenever an ad plays
-	 - It doesn't use the right art, so just use a generic image
-	 - Have to catch whenever there is an ad
-		 - Probably check the album for "http..."
- - Clean up the exit button
- - Volume Controls
