@@ -33,11 +33,11 @@ function spamCheckStatus(){
 				// console.log(err);
 			}
 			if(state){
-				if(state.state == "paused" && $('.playpause').attr('src') == "pause.png"){
-					$('.playpause').attr('src','play.png');
+				if(state.state == "paused" && $('.playpause').attr('src') == "images/pause.png"){
+					$('.playpause').attr('src','images/play.png');
 				}
-				else if(state.state == "playing" && $('.playpause').attr('src') == "play.png"){
-					$('.playpause').attr('src','pause.png');	
+				else if(state.state == "playing" && $('.playpause').attr('src') == "images/play.png"){
+					$('.playpause').attr('src','images/pause.png');	
 				}	
 			}
 			
