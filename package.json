@@ -1,7 +1,7 @@
 {
   "name": "SpotifyMiniPlayer",
   "version": "0.1.0",
-  "description": "A mini player to control Spotify",
+  "description": "A mini player for Spotify built in Node",
   "main": "index.html",
   "scripts": {
     "start": "/Users/andrew/projects/node-webkit.app/Contents/MacOS/node-webkit ."
