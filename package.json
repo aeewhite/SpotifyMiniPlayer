@@ -4,20 +4,20 @@
   "description": "A mini player for Spotify built in Node",
   "main": "index.html",
   "scripts": {
-    "start": "/Users/andrew/projects/node-webkit.app/Contents/MacOS/node-webkit ."
+    "start": "nw ."
   },
   "keywords": [
     "Spotify",
     "mini-player",
     "controller"
   ],
-  "repository":{
-    "type":"git",
-    "url":"https://github.com/aeewhite/SpotifyMiniPlayer.git"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aeewhite/SpotifyMiniPlayer.git"
   },
   "author": {
-    "name":"Andrew White"
-    },
+    "name": "Andrew White"
+  },
   "dependencies": {
     "spotify-node-applescript": "andrehaveman/spotify-node-applescript"
   },
@@ -25,6 +25,11 @@
     "title": "Spotify Mini Player",
     "width": 335,
     "height": 335,
+    "icon": "images/icon_source/icon_512x512@2x.png",
     "frame": false
+  },
+  "devDependencies": {
+    "node-webkit-builder": "^1.0.8",
+    "osx-ulimit": "^0.1.2"
   }
 }
