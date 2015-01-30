@@ -19,7 +19,9 @@
     "name": "Andrew White"
   },
   "dependencies": {
-    "spotify-node-applescript": "andrehaveman/spotify-node-applescript"
+    "spotify-node-applescript": "andrehaveman/spotify-node-applescript",
+    "node-webkit-builder": "^1.0.8",
+    "osx-ulimit": "^0.1.2"
   },
   "window": {
     "title": "Spotify Mini Player",
@@ -27,9 +29,5 @@
     "height": 335,
     "icon": "images/icon_source/icon_512x512@2x.png",
     "frame": false
-  },
-  "devDependencies": {
-    "node-webkit-builder": "^1.0.8",
-    "osx-ulimit": "^0.1.2"
   }
 }
