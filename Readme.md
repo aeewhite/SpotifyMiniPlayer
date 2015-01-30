@@ -12,7 +12,7 @@ The app uses [node-webkit](https://github.com/nwjs/nw.js) to make a desktop app 
 ##Installation
 1. Clone the repository
 2. In the directory run `npm install`
-3. Run the app using node-webkit `nw .` 
+3. Run the app using node-webkit `nw .` or run `./build` to build a .app bundle in the build folder
 
 ##Todo
 
@@ -24,6 +24,4 @@ The app uses [node-webkit](https://github.com/nwjs/nw.js) to make a desktop app 
  	 - Add hover and active states
  - Volume Controls
  	 - I can get/set Spotify volume with the spotify-node-applescript, just need to implement an interface
- - App Icon for making distributable packages
-	 - Also a build script for automating that
  - Make gh-pages branch to show off the app
