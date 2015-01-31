@@ -24,4 +24,4 @@ The app uses [node-webkit](https://github.com/nwjs/nw.js) to make a desktop app 
  	 - Add hover and active states
  - Volume Controls
  	 - I can get/set Spotify volume with the spotify-node-applescript, just need to implement an interface
- - Make gh-pages branch to show off the app
+ - Make gh-pages branch to advertise the app
