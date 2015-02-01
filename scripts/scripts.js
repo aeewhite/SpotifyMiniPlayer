@@ -127,6 +127,7 @@ $(document).on("mouseleave",function(){
 		$('.infoBox').fadeOut();
 		$('.controlBox').fadeOut();
 		$('.exit').fadeOut();
+		$('.webui-popover').remove();
 	},800);
 });
 $(document).on("mouseenter",function(){
