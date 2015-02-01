@@ -58,6 +58,11 @@ html {
 	margin:auto;
 	height:20px;
 }
+input{
+	width:100%;
+	padding:1px;
+	margin:0;
+}
 .playpause{
 	position: relative;
 	top: 6px;

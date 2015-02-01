@@ -148,7 +148,12 @@ $('body').on('songChange', function(){
 
 // Volume Control Code
 function getVolume(){
-	return mostRecentState.volume;
+	if(mostRecentState){
+		return mostRecentState.volume;
+	}
+	else{
+		return 50;
+	}
 }
 
 function setVolume(vol){
@@ -158,6 +163,23 @@ function setVolume(vol){
 		}
 		console.log("Volume was " + mostRecentState.volume + ". Volume has been set to "+ vol);
 	});
+}
+
+popOverOptions = {
+	'position':'top',
+	'multi':'false',
+	'width':'auto',
+	'title':'',
+	'cache':false,
+	content:function(){
+		return '<input type="range" id="volumeSlider" value="'+ getVolume() +'" onchange="volumeChanged()">';
+	}
+};
+
+$('.volumeButton').webuiPopover(popOverOptions);
+
+function volumeChanged(){
+	setVolume($('#volumeSlider').val());
 }
 
 
