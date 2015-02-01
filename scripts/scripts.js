@@ -30,6 +30,7 @@ function spamCheckStatus(){
 				// console.log(err);
 			}
 			if(state){
+				mostRecentState = state;
 				if(state.state == "paused" && $('.playpause').attr('src') == "images/pause.png"){
 					$('.playpause').attr('src','images/play.png');
 				}
