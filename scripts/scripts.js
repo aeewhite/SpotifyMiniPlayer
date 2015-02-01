@@ -40,10 +40,10 @@ function spamCheckStatus(){
 			}
 			
 		});
-	}, 500);	
+	}, 400);	
 }
 
-var currentBackground = "Whatever";
+
 
 function setBackground(path){
 	if(path !== undefined && path != currentBackground){
@@ -74,12 +74,11 @@ function getAlbumArtwork(){
 	});
 }
 
-var currentSong;
 
 function getTrackInformation(){
 	spotify.getTrack(function(err, track){
 		if(err){
-			console.error("Song Check Failed");
+			console.error("Song Check Failed. " + err);
 		}
 		else{
 			console.log("Song Check Success");
