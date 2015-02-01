@@ -108,6 +108,7 @@ function songChangeLoop(){
 	console.log("Started Check Loop");
 }
 
+// Create event handlers for the play controls
 $('.playpause').click(function(){
 	spotify.playPause();
 });
@@ -120,6 +121,7 @@ $('.next').click(function(){
 	getTrackInformation();
 });
 
+// Handlers for hiding and showing the play controls
 $(document).on("mouseleave",function(){
 	setTimeout(function(){
 		$('.infoBox').fadeOut();
@@ -133,15 +135,32 @@ $(document).on("mouseenter",function(){
 	$('.exit').show();
 });
 
-// $(document).click(win.focus);
+
 $('#closeButton').on("click",function(){
 	win.close();
 });
 
+// Handle when a song changes
 $('body').on('songChange', function(){
 	getAlbumArtwork();
 	displaySong(currentSong);
 });
 
+// Volume Control Code
+function getVolume(){
+	return mostRecentState.volume;
+}
+
+function setVolume(vol){
+	spotify.setVolume(vol, function(err,state){
+		if(err){
+			console.log(err);
+		}
+		console.log("Volume was " + mostRecentState.volume + ". Volume has been set to "+ vol);
+	});
+}
+
+
+// Start up the polling timers
 spamCheckStatus();
 songChangeLoop();
