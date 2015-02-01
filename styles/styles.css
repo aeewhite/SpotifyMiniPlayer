@@ -62,6 +62,7 @@ input{
 	width:100%;
 	padding:1px;
 	margin:0;
+	-webkit-app-region: no-drag;
 }
 .playpause{
 	position: relative;
