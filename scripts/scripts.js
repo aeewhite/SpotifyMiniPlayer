@@ -17,14 +17,6 @@ function isSongEquivalent(a, b) {
 	return true;
 }
 
-function CheckifRunning(){
-	// This Doesn't work
-	spotify.isRunning(function(err, isRunning){
-		console.log(isRunning);
-	});	
-}
-
-
 function spamCheckStatus(){
 	// This doesn't usually work
 	setInterval(function(){
