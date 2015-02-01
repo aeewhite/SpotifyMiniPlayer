@@ -1,9 +1,14 @@
 spotify = require("spotify-node-applescript");
 // Load native UI library
-var gui = require('nw.gui'); //or global.window.nwDispatcher.requireNwGui() (see https://github.com/rogerwang/node-webkit/issues/707)
+var gui = require('nw.gui'); //or global.window.nwDispatcher.requireNwGui()
 
 // Get the current window
 var win = gui.Window.get();
+
+var currentBackground = "Whatever";
+var currentSong;
+var mostRecentState;
+
 
 function isSongEquivalent(a, b) {
 	if(a === undefined || b ===undefined){
