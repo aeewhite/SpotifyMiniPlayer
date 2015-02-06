@@ -27,7 +27,7 @@ function spamCheckStatus(){
 	setInterval(function(){
 		spotify.getState(function(err, state){
 			if(err){
-				// console.log(err);
+				console.error("Status Check Fails",err);
 			}
 			if(state){
 				if(mostRecentState && mostRecentState.volume!=state.volume){
