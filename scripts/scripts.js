@@ -27,10 +27,9 @@ function spamCheckStatus(){
 	setInterval(function(){
 		spotify.getState(function(err, state){
 			if(err){
-				console.error("Status Check Fails",err);
+				// console.log(err);
 			}
 			if(state){
-				console.log("Status Check Success");
 				if(mostRecentState && mostRecentState.volume!=state.volume){
 					$('body').trigger('volumeChanged');
 				}
@@ -127,40 +126,18 @@ $('.next').click(function(){
 });
 
 // Handlers for hiding and showing the play controls
-var isFocused = false;
-win.on('focus',function(){
-	isFocused = true;
+$(document).on("mouseleave",function(){
+	setTimeout(function(){
+		$('.infoBox').fadeOut();
+		$('.controlBox').fadeOut();
+		$('.exit').fadeOut();
+		$('.webui-popover').remove();
+	},800);
 });
-win.on('blur',function(){
-	isFocused = false;
-});
-
-function hideControls(){
-	$('.infoBox').fadeOut();
-	$('.controlBox').fadeOut();
-	$('.exit').fadeOut();
-	$('.webui-popover').remove();
-}
-function showControls(){
+$(document).on("mouseenter",function(){
 	$('.infoBox').show();
 	$('.controlBox').show();
 	$('.exit').show();
-}
-
-$(document).on("mouseleave",function(){
-	if(isFocused){
-		setTimeout(function(){
-			hideControls();
-		},800);
-	}
-	else{
-		setTimeout(function(){
-			hideControls();
-		},1500);
-	}
-});
-$(document).on("mouseenter",function(){
-	showControls();
 });
 
 
