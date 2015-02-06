@@ -30,13 +30,17 @@ function spamCheckStatus(){
 				// console.log(err);
 			}
 			if(state){
+				if(mostRecentState && mostRecentState.volume!=state.volume){
+					$('body').trigger('volumeChanged');
+				}
 				mostRecentState = state;
 				if(state.state == "paused" && $('.playpause').attr('src') == "images/pause.png"){
 					$('.playpause').attr('src','images/play.png');
 				}
 				else if(state.state == "playing" && $('.playpause').attr('src') == "images/play.png"){
 					$('.playpause').attr('src','images/pause.png');	
-				}	
+				}
+
 			}
 			
 		});
@@ -183,6 +187,26 @@ function volumeChanged(){
 	setVolume($('#volumeSlider').val());
 }
 
+// Change volume icon based on volume
+$('body').on('volumeChanged',function(){
+	vol = getVolume();
+	if(vol<=1){
+		// Change to mute icon
+		$('.volumeButton img').attr('src','images/volume_icons/volume_off.png');
+	}
+	else if(vol>1 && vol<=33){
+		// Change to low volume icon
+		$('.volumeButton img').attr('src','images/volume_icons/volume_low.png');
+	}
+	else if(vol>33 && vol<=66){
+		// Change to medium volume icon
+		$('.volumeButton img').attr('src','images/volume_icons/volume_medium.png');
+	}
+	else if(vol>66){
+		// Change to high volume icon
+		$('.volumeButton img').attr('src','images/volume_icons/volume_high.png');
+	}
+});
 
 // Start up the polling timers
 spamCheckStatus();
