@@ -1,9 +1,14 @@
 spotify = require("spotify-node-applescript");
 // Load native UI library
-var gui = require('nw.gui'); //or global.window.nwDispatcher.requireNwGui() (see https://github.com/rogerwang/node-webkit/issues/707)
+var gui = require('nw.gui'); //or global.window.nwDispatcher.requireNwGui()
 
 // Get the current window
 var win = gui.Window.get();
+
+var currentBackground = "Whatever";
+var currentSong;
+var mostRecentState;
+
 
 function isSongEquivalent(a, b) {
 	if(a === undefined || b ===undefined){
@@ -17,14 +22,6 @@ function isSongEquivalent(a, b) {
 	return true;
 }
 
-function CheckifRunning(){
-	// This Doesn't work
-	spotify.isRunning(function(err, isRunning){
-		console.log(isRunning);
-	});	
-}
-
-
 function spamCheckStatus(){
 	// This doesn't usually work
 	setInterval(function(){
@@ -33,19 +30,24 @@ function spamCheckStatus(){
 				// console.log(err);
 			}
 			if(state){
+				if(mostRecentState && mostRecentState.volume!=state.volume){
+					$('body').trigger('volumeChanged');
+				}
+				mostRecentState = state;
 				if(state.state == "paused" && $('.playpause').attr('src') == "images/pause.png"){
 					$('.playpause').attr('src','images/play.png');
 				}
 				else if(state.state == "playing" && $('.playpause').attr('src') == "images/play.png"){
 					$('.playpause').attr('src','images/pause.png');	
-				}	
+				}
+
 			}
 			
 		});
-	}, 500);	
+	}, 400);	
 }
 
-var currentBackground = "Whatever";
+
 
 function setBackground(path){
 	if(path !== undefined && path != currentBackground){
@@ -76,12 +78,11 @@ function getAlbumArtwork(){
 	});
 }
 
-var currentSong;
 
 function getTrackInformation(){
 	spotify.getTrack(function(err, track){
 		if(err){
-			console.error("Song Check Failed");
+			console.error("Song Check Failed. " + err);
 		}
 		else{
 			console.log("Song Check Success");
@@ -111,6 +112,7 @@ function songChangeLoop(){
 	console.log("Started Check Loop");
 }
 
+// Create event handlers for the play controls
 $('.playpause').click(function(){
 	spotify.playPause();
 });
@@ -123,11 +125,13 @@ $('.next').click(function(){
 	getTrackInformation();
 });
 
+// Handlers for hiding and showing the play controls
 $(document).on("mouseleave",function(){
 	setTimeout(function(){
 		$('.infoBox').fadeOut();
 		$('.controlBox').fadeOut();
 		$('.exit').fadeOut();
+		$('.webui-popover').remove();
 	},800);
 });
 $(document).on("mouseenter",function(){
@@ -136,15 +140,74 @@ $(document).on("mouseenter",function(){
 	$('.exit').show();
 });
 
-// $(document).click(win.focus);
+
 $('#closeButton').on("click",function(){
 	win.close();
 });
 
+// Handle when a song changes
 $('body').on('songChange', function(){
 	getAlbumArtwork();
 	displaySong(currentSong);
 });
 
+// Volume Control Code
+function getVolume(){
+	if(mostRecentState){
+		return mostRecentState.volume;
+	}
+	else{
+		return 50;
+	}
+}
+
+function setVolume(vol){
+	spotify.setVolume(vol, function(err,state){
+		if(err){
+			console.log(err);
+		}
+		console.log("Volume was " + mostRecentState.volume + ". Volume has been set to "+ vol);
+	});
+}
+
+popOverOptions = {
+	'position':'top',
+	'multi':'false',
+	'width':'auto',
+	'title':'',
+	'cache':false,
+	content:function(){
+		return '<input type="range" id="volumeSlider" value="'+ getVolume() +'" onchange="volumeChanged()">';
+	}
+};
+
+$('.volumeButton').webuiPopover(popOverOptions);
+
+function volumeChanged(){
+	setVolume($('#volumeSlider').val());
+}
+
+// Change volume icon based on volume
+$('body').on('volumeChanged',function(){
+	vol = getVolume();
+	if(vol<=1){
+		// Change to mute icon
+		$('.volumeButton img').attr('src','images/volume_icons/volume_off.png');
+	}
+	else if(vol>1 && vol<=33){
+		// Change to low volume icon
+		$('.volumeButton img').attr('src','images/volume_icons/volume_low.png');
+	}
+	else if(vol>33 && vol<=66){
+		// Change to medium volume icon
+		$('.volumeButton img').attr('src','images/volume_icons/volume_medium.png');
+	}
+	else if(vol>66){
+		// Change to high volume icon
+		$('.volumeButton img').attr('src','images/volume_icons/volume_high.png');
+	}
+});
+
+// Start up the polling timers
 spamCheckStatus();
 songChangeLoop();

@@ -42,6 +42,28 @@ html {
 .controlBox{
 	bottom:0;
 }
+.playControls{
+	position: absolute;
+	left:50%;
+}
+.inner{
+	position: relative;
+	left: -50%;
+}
+.volumeButton{
+	position: absolute;
+	right:10%;
+	top:0;
+	bottom:0;
+	margin:auto;
+	height:20px;
+}
+input{
+	width:100%;
+	padding:1px;
+	margin:0;
+	-webkit-app-region: no-drag;
+}
 .playpause{
 	position: relative;
 	top: 6px;
