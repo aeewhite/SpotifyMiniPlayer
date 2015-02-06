@@ -30,6 +30,7 @@ function spamCheckStatus(){
 				console.error("Status Check Fails",err);
 			}
 			if(state){
+				console.log("Status Check Success");
 				if(mostRecentState && mostRecentState.volume!=state.volume){
 					$('body').trigger('volumeChanged');
 				}
@@ -126,18 +127,40 @@ $('.next').click(function(){
 });
 
 // Handlers for hiding and showing the play controls
-$(document).on("mouseleave",function(){
-	setTimeout(function(){
-		$('.infoBox').fadeOut();
-		$('.controlBox').fadeOut();
-		$('.exit').fadeOut();
-		$('.webui-popover').remove();
-	},800);
+var isFocused = false;
+win.on('focus',function(){
+	isFocused = true;
 });
-$(document).on("mouseenter",function(){
+win.on('blur',function(){
+	isFocused = false;
+});
+
+function hideControls(){
+	$('.infoBox').fadeOut();
+	$('.controlBox').fadeOut();
+	$('.exit').fadeOut();
+	$('.webui-popover').remove();
+}
+function showControls(){
 	$('.infoBox').show();
 	$('.controlBox').show();
 	$('.exit').show();
+}
+
+$(document).on("mouseleave",function(){
+	if(isFocused){
+		setTimeout(function(){
+			hideControls();
+		},800);
+	}
+	else{
+		setTimeout(function(){
+			hideControls();
+		},1500);
+	}
+});
+$(document).on("mouseenter",function(){
+	showControls();
 });
 
 
